@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.yangholee.hnproject_compose"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.yangholee.hnproject_compose"
