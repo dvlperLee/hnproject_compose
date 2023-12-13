@@ -45,6 +45,12 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.yangholee.hnproject_compose.login.LoginScreen
+import com.yangholee.hnproject_compose.main.MainScreen
+import com.yangholee.hnproject_compose.navigation.NavRoutes
 import com.yangholee.hnproject_compose.ui.theme.Hnproject_composeTheme
 
 class MainActivity : ComponentActivity() {
@@ -57,7 +63,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Screen()
+                    Main()
                 }
             }
         }
@@ -65,73 +71,93 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Screen(){
-    LoginScreen()
+fun Main(){
+    val navController = rememberNavController()
+
+    NavHost(navController = navController,
+        startDestination = NavRoutes.login.route,){
+            composable(NavRoutes.login.route){
+                LoginScreen(navController = navController)
+            }
+
+            composable(NavRoutes.main.route){
+                MainScreen(navController = navController)
+            }
+    }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
+
+
+
+
 @Composable
-fun LoginScreen(){
-    val userId = remember {
-        mutableStateOf("")
-    }
-    val password = remember {
-        mutableStateOf("")
-    }
-
-    val focusRequester = remember {
-        FocusRequester()
-    }
-
-    Column (
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center,
-        modifier = Modifier.fillMaxSize()
-    ){
-        Image(
-            painter = painterResource(id = R.drawable.hn_logo),
-            contentDescription = ""
-        )
-//        Text(
-//            style = MaterialTheme.typography.headlineMedium,
-//            text = "Login"
-//        )
-        Surface(color = MaterialTheme.colorScheme.background) {
-            OutlinedTextField(
-                value = userId.value,
-                onValueChange = {
-                    userId.value = it
-                                },
-                label = { Text(text = "ID") },
-                enabled = true,
-                placeholder = { Text(text = "아이디를 입력해주세요.") },
-                leadingIcon = { Icon(imageVector = Icons.Default.AccountCircle, contentDescription = "")},
-                singleLine = true,
-                keyboardOptions =  KeyboardOptions(imeAction = ImeAction.Done),
-                keyboardActions = KeyboardActions(
-                    onDone = {focusRequester.requestFocus()})
-            )
-        }
-        Surface(color = MaterialTheme.colorScheme.background) {
-            OutlinedTextField(
-                value = password.value,
-                onValueChange = { password.value = it },
-                label = { Text(text = "PASSWORD") },
-                enabled = true,
-                placeholder = { Text(text = "비밀번호를 입력해주세요.") },
-                leadingIcon = { Icon(imageVector = Icons.Default.Lock, contentDescription = "")},
-                visualTransformation = PasswordVisualTransformation(),
-                singleLine = true,
-                modifier = Modifier.focusRequester(focusRequester)
-            )
-        }
-        Button(
-            onClick = { /*TODO*/ }
-            , content = { Text(text = "Login")}
-        )
-
-    }
+fun Screen(){
+   // LoginScreen()
 }
+
+//@OptIn(ExperimentalMaterial3Api::class)
+//@Composable
+//fun LoginScreen(){
+//    val userId = remember {
+//        mutableStateOf("")
+//    }
+//    val password = remember {
+//        mutableStateOf("")
+//    }
+//
+//    val focusRequester = remember {
+//        FocusRequester()
+//    }
+//
+//    Column (
+//        horizontalAlignment = Alignment.CenterHorizontally,
+//        verticalArrangement = Arrangement.Center,
+//        modifier = Modifier.fillMaxSize()
+//    ){
+//        Image(
+//            painter = painterResource(id = R.drawable.hn_logo),
+//            contentDescription = ""
+//        )
+////        Text(
+////            style = MaterialTheme.typography.headlineMedium,
+////            text = "Login"
+////        )
+//        Surface(color = MaterialTheme.colorScheme.background) {
+//            OutlinedTextField(
+//                value = userId.value,
+//                onValueChange = {
+//                    userId.value = it
+//                                },
+//                label = { Text(text = "ID") },
+//                enabled = true,
+//                placeholder = { Text(text = "아이디를 입력해주세요.") },
+//                leadingIcon = { Icon(imageVector = Icons.Default.AccountCircle, contentDescription = "")},
+//                singleLine = true,
+//                keyboardOptions =  KeyboardOptions(imeAction = ImeAction.Done),
+//                keyboardActions = KeyboardActions(
+//                    onDone = {focusRequester.requestFocus()})
+//            )
+//        }
+//        Surface(color = MaterialTheme.colorScheme.background) {
+//            OutlinedTextField(
+//                value = password.value,
+//                onValueChange = { password.value = it },
+//                label = { Text(text = "PASSWORD") },
+//                enabled = true,
+//                placeholder = { Text(text = "비밀번호를 입력해주세요.") },
+//                leadingIcon = { Icon(imageVector = Icons.Default.Lock, contentDescription = "")},
+//                visualTransformation = PasswordVisualTransformation(),
+//                singleLine = true,
+//                modifier = Modifier.focusRequester(focusRequester)
+//            )
+//        }
+//        Button(
+//            onClick = { /*TODO*/ }
+//            , content = { Text(text = "Login")}
+//        )
+//
+//    }
+//}
 
 
 
