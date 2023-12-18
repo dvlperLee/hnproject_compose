@@ -51,6 +51,7 @@ import androidx.navigation.compose.rememberNavController
 import com.yangholee.hnproject_compose.login.LoginScreen
 import com.yangholee.hnproject_compose.main.MainScreen
 import com.yangholee.hnproject_compose.navigation.NavRoutes
+import com.yangholee.hnproject_compose.navigation.hnNavHost
 import com.yangholee.hnproject_compose.ui.theme.Hnproject_composeTheme
 
 class MainActivity : ComponentActivity() {
@@ -72,18 +73,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Main(){
-    val navController = rememberNavController()
-
-    NavHost(navController = navController,
-        startDestination = NavRoutes.login.route,){
-            composable(NavRoutes.login.route){
-                LoginScreen(navController = navController)
-            }
-
-            composable(NavRoutes.main.route){
-                MainScreen(navController = navController)
-            }
-    }
+    hnNavHost()
 }
 
 
