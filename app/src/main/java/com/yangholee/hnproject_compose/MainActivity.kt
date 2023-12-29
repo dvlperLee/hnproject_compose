@@ -53,7 +53,9 @@ import com.yangholee.hnproject_compose.main.MainScreen
 import com.yangholee.hnproject_compose.navigation.NavRoutes
 import com.yangholee.hnproject_compose.navigation.hnNavHost
 import com.yangholee.hnproject_compose.ui.theme.Hnproject_composeTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
