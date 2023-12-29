@@ -57,10 +57,10 @@ fun MainScreen(
 //
 //                }
 //        }
-        JobItem(name = "반입", resId = drawable.ic_launcher_foreground , description = "설명", onClick = { /*TODO*/ })
+        JobItem(name = "반입", resId = drawable.ic_launcher_foreground , description = "반입차량, 시간을 ", onClick = { /*TODO*/ })
         JobItem(name = "반출", resId = drawable.ic_launcher_foreground , description = "설명", onClick = { /*TODO*/ })
-        JobItem(name = "입반출 내역", resId = drawable.ic_launcher_foreground , description = "설명", onClick = { /*TODO*/ })
-        JobItem(name = "로그아웃", resId = drawable.ic_launcher_foreground , description = "설명", onClick = { /*TODO*/ })
+        JobItem(name = "입반출관리", resId = drawable.ic_launcher_foreground , description = "설명", onClick = { /*TODO*/ })
+        JobItem(name = "입반출내역", resId = drawable.ic_launcher_foreground , description = "설명", onClick = {navController.navigate(NavRoutes.history.route)})
     }
 
 //    Column {
